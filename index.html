@@ -54,6 +54,56 @@ Sign In
 
 </div>
 
+<!-- MAIN PAGE -->
+
+<div id="mainPage" class="hidden pb-12">
+
+<!-- NAVBAR -->
+
+<div class="navbar bg-white shadow ">
+
+<div class="flex-1 space-x-4">
+<div><img src="./assets/github-logo.png" class="w-8 h-8" alt=""></div>
+<h1 class="text-lg font-bold text-black">GitHub Issues Tracker</h1>
+
+</div>
+
+<div class="flex gap-2">
+
+<input id="searchInput" type="text" placeholder="Search issues..." class="input input-bordered bg-white text-black"/>
+
+<button onclick="searchIssue()" class="btn btn-primary">
+Search
+</button>
+
+</div>
+
+</div>
+
+<!-- MAIN CONTAINER -->
+
+<div class="max-w-7xl mx-auto mt-6">
+
+<!-- TABS -->
+<div class="bg-white p-4 rounded-lg w-full mb-4">
+  <div class="tabs tabs-boxed gap-3 w-full justify-start bg-white">
+
+    <!-- All is gradient by default -->
+    <a id="tabAll" onclick="filterIssues('all')" class="tab bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-none rounded-md px-6">
+      All
+    </a>
+
+    <a id="tabOpen" onclick="filterIssues('open')" class="tab bg-slate-100 text-gray-500 rounded-md px-6">
+      Open
+    </a>
+
+    <a id="tabClosed" onclick="filterIssues('closed')" class="tab bg-slate-100 text-gray-500 rounded-md px-6">
+      Closed
+    </a>
+
+  </div>
+</div>
+
 
 <script src="script.js"></script>
 
