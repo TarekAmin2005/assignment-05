@@ -159,3 +159,25 @@ container.appendChild(card);
 });
 
 }
+
+// FILTER
+
+function filterIssues(type) {
+  const tabs = ["tabAll", "tabOpen", "tabClosed"];
+
+  // Reset all tabs to white
+  tabs.forEach(tabId => {
+    const el = document.getElementById(tabId);
+    el.classList.remove("bg-gradient-to-r", "from-purple-600", "to-indigo-600", "text-white");
+    el.classList.add("bg-slate-100", "text-gray-500");
+  });
+
+  // Apply gradient only to the active tab
+  const activeTab = document.getElementById("tab" + type.charAt(0).toUpperCase() + type.slice(1));
+  activeTab.classList.remove("bg-slate-100", "text-gray-500");
+  activeTab.classList.add("bg-gradient-to-r", "from-purple-600", "to-indigo-600", "text-white");
+
+  // Filter issues
+  if (type === "all") displayIssues(allIssues);
+  else displayIssues(allIssues.filter(i => i.status === type));
+}
