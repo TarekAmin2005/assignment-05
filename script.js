@@ -42,3 +42,120 @@ displayIssues(allIssues);
 document.getElementById("loader").classList.add("hidden");
 
 }
+
+// DISPLAY ISSUES
+
+function displayIssues(issues){
+
+const container = document.getElementById("issuesContainer");
+
+container.innerHTML = "";
+
+document.getElementById("issueCount").innerText = issues.length;
+
+issues.forEach(issue => {
+
+const borderColor =
+issue.status === "open"
+? "border-t-4 border-green-500"
+: "border-t-4 border-purple-500";
+
+const statusIcon =
+issue.status === "open"
+? `<div class="w-5 h-5 border-2 border-green-500 rounded-full flex items-center justify-center">
+     <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+   </div>`
+: `<div class="w-5 h-5 border-2 border-purple-500 rounded-full flex items-center justify-center">
+     <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+   </div>`;
+
+
+const labelsHTML = issue.labels
+? issue.labels.map(label => {
+
+let style = "";
+
+if(label.toLowerCase() === "bug"){
+style = "background:#FEECEC;border:1px solid #FECACA;color:#EF4444;";
+}
+
+if(label.toLowerCase() === "good first issue"){
+style = "background:#FFF8DB;border:1px solid #FDE68A;color:#D97706;";
+}
+
+if(label.toLowerCase() === "help wanted"){
+style = "background:#FFF8DB;border:1px solid #FDE68A;color:#D97706;";
+}
+
+if(label.toLowerCase() === "enhancement"){
+style = "background:#ECFDF5;border:1px solid #BBF7D0;color:#059669;";
+}
+
+if(label.toLowerCase() === "documentation"){
+style = "background:#ECFDF5;border:1px solid #BBF7D0;color:#059669;";
+}
+
+return `<span class="px-2 py-1 text-xs font-semibold rounded-full" style="${style}">
+${label}
+</span>`;
+
+}).join("")
+: "";
+
+const card = document.createElement("div");
+
+card.className = `bg-white border border-base-300 rounded-xl shadow-sm p-5 space-y-4 cursor-pointer hover:shadow-md transition ${borderColor}`;
+
+card.innerHTML = `
+
+<div class="flex items-start justify-between">
+
+<div class="flex items-center gap-2">
+
+${statusIcon}
+
+<h2 class="text-lg font-semibold text-black">
+${issue.title}
+</h2>
+
+</div>
+
+<span class="badge badge-warning badge-outline text-xs">
+${issue.priority}
+</span>
+
+</div>
+
+<p class="text-sm text-base-content/70 leading-relaxed">
+${issue.description}
+</p>
+
+<div class="flex gap-2 flex-wrap">
+${labelsHTML}
+</div>
+
+<div class="text-xs text-base-content/60 space-y-1">
+
+<div class="flex justify-between">
+
+<div>
+#${issue.id} by 
+<span class="font-medium">${issue.author}</span>
+</div>
+
+<div>
+${issue.createdAt}
+</div>
+
+</div>
+
+</div>
+`;
+
+card.onclick = () => openModal(issue);
+
+container.appendChild(card);
+
+});
+
+}
