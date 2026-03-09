@@ -181,3 +181,20 @@ function filterIssues(type) {
   if (type === "all") displayIssues(allIssues);
   else displayIssues(allIssues.filter(i => i.status === type));
 }
+// SEARCH
+
+async function searchIssue(){
+
+const q = document.getElementById("searchInput").value;
+
+document.getElementById("loader").classList.remove("hidden");
+
+const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${q}`);
+
+const data = await res.json();
+
+displayIssues(data.data);
+
+document.getElementById("loader").classList.add("hidden");
+
+}
