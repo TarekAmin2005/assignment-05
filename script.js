@@ -1,4 +1,7 @@
 console.log("Project Started");
+const API = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+
+let allIssues = [];
 
 // LOGIN
 
@@ -19,5 +22,23 @@ loadIssues();
 alert("Invalid Credentials");
 
 }
+
+}
+
+
+// LOAD ISSUES
+
+async function loadIssues(){
+
+document.getElementById("loader").classList.remove("hidden");
+
+const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+const data = await res.json();
+
+allIssues = data.data;
+
+displayIssues(allIssues);
+
+document.getElementById("loader").classList.add("hidden");
 
 }
