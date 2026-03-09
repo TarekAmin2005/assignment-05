@@ -1,7 +1,8 @@
-console.log("Project Started");
 const API = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
 let allIssues = [];
+
+
 
 // LOGIN
 
@@ -26,6 +27,7 @@ alert("Invalid Credentials");
 }
 
 
+
 // LOAD ISSUES
 
 async function loadIssues(){
@@ -42,6 +44,8 @@ displayIssues(allIssues);
 document.getElementById("loader").classList.add("hidden");
 
 }
+
+
 
 // DISPLAY ISSUES
 
@@ -160,6 +164,8 @@ container.appendChild(card);
 
 }
 
+
+
 // FILTER
 
 function filterIssues(type) {
@@ -181,6 +187,8 @@ function filterIssues(type) {
   if (type === "all") displayIssues(allIssues);
   else displayIssues(allIssues.filter(i => i.status === type));
 }
+
+
 // SEARCH
 
 async function searchIssue(){
@@ -198,6 +206,7 @@ displayIssues(data.data);
 document.getElementById("loader").classList.add("hidden");
 
 }
+
 
 
 // MODAL
