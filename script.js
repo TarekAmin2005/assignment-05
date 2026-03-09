@@ -198,3 +198,55 @@ displayIssues(data.data);
 document.getElementById("loader").classList.add("hidden");
 
 }
+
+
+// MODAL
+
+function openModal(issue){
+
+  document.getElementById("modalTitle").innerText = issue.title;
+  document.getElementById("modalDesc").innerText = issue.description;
+  document.getElementById("modalAuthor").innerText = issue.author;
+  document.getElementById("modalAssignee").innerText = issue.author;
+  document.getElementById("modalDate").innerText = new Date(issue.createdAt).toLocaleDateString();
+
+  // STATUS
+  const statusEl = document.getElementById("modalStatus");
+  if(issue.status === "open"){
+    statusEl.innerText = "OPENED";
+    statusEl.className = "badge badge-success text-white";
+  } else {
+    statusEl.innerText = "CLOSED";
+    statusEl.className = "badge badge-secondary text-white";
+  }
+
+  // PRIORITY
+  const priorityEl = document.getElementById("modalPriority");
+  if(issue.priority === "high"){
+    priorityEl.innerText = "HIGH";
+    priorityEl.className = "badge bg-red-500 text-white px-4 py-3 rounded-full";
+  }
+  if(issue.priority === "medium"){
+    priorityEl.innerText = "MEDIUM";
+    priorityEl.className = "badge bg-yellow-500 text-white px-4 py-3 rounded-full";
+  }
+  if(issue.priority === "low"){
+    priorityEl.innerText = "LOW";
+    priorityEl.className = "badge bg-green-500 text-white px-4 py-3 rounded-full";
+  }
+
+  // LABELS
+  const labelsContainer = document.getElementById("modalLabels");
+  labelsContainer.innerHTML = issue.labels
+    ? issue.labels.map(label => {
+        let style = "";
+        if(label.toLowerCase() === "bug") style = "border-red-300 text-red-500";
+        if(label.toLowerCase() === "help wanted") style = "border-yellow-300 text-yellow-600";
+        if(label.toLowerCase() === "enhancement") style = "border-green-300 text-green-600";
+        return `<span class="badge badge-outline ${style}">${label.toUpperCase()}</span>`;
+      }).join("")
+    : "";
+
+  // OPEN MODAL
+  document.getElementById("issue-modal").checked = true;
+}
