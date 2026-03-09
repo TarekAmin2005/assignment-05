@@ -12,9 +12,48 @@
 
 <body class="bg-gray-100">
 
-<h1 class="text-center text-2xl mt-10 font-bold">
-Github Issues Tracker
-</h1>
+    
+
+<!-- Login Page -->
+<div id="loginPage" class="flex items-center justify-center min-h-screen ">
+
+<div class="card w-96 bg-white shadow-xl p-6">
+
+<div class="flex flex-col items-center">
+
+<img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" class="w-16 mb-4"/>
+
+<h2 class="text-xl font-bold  text-black">GitHub Issues Tracker</h2>
+
+<p class="text-gray-500 text-sm mb-4">Sign in to manage your issues</p>
+
+</div>
+
+<label class="label text-black">Username</label>
+<input id="username" type="text" placeholder="Enter Username" class="input input-bordered w-full bg-slate-50 text-black"/>
+
+<p class="text-blue-600 text-sm">Default: admin</p>
+
+<label class="label mt-3 text-black">Password</label>
+<input id="password" type="password" placeholder="Enter Password" class="input input-bordered w-full bg-slate-50 text-black"/>
+
+<p class="text-blue-600 text-sm">Default: admin123</p>
+
+<button onclick="login()" class="btn btn-primary mt-4 bg-gradient-to-r from-purple-500 to-indigo-600 border-none">
+Sign In
+</button>
+
+<div class="divider">OR</div>
+
+<div class="bg-gray-100 p-3 rounded text-center text-sm">
+<b>Username:</b> admin<br>
+<b>Password:</b> admin123
+</div>
+
+</div>
+
+</div>
+
 
 <script src="script.js"></script>
 
